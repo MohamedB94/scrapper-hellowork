@@ -1,0 +1,51 @@
+                               Mohamed BENASR
+                     Data Engineer | Développeur Full-Stack Data
+   Rythme d'alternance ou de stage : 3 semaine entreprise / 1 semaine école
+                                  Formation Niveau Bac+3
+
+   Contact                                                                 Expériences
+
+   94400 Vitry-sur-seine
+                                                  Data Engineer & Dev Full-Stack Data
+                                                  Contexte : Autodidacte, je développe
+    07 49 32 60 61
+                                                  continuellement des projets personnels pour
+    benasrmohamed94@gmail.com                     explorer et maîtriser l'écosystème data (voir
+                                                  mon Github)
+    Permis B                                         Pipeline météorologique automatisé :
+                                                     Développement d'un système complet de
+    Age : 20                                         collecte, traitement et visualisation des
+                                                     données météo parisiennes avec Python,
+    Github                                           Docker, MySQL et Streamlit, incluant
+                                                     l'automatisation via cron.
+                                                     Dashboard RATP: Création d'une plateforme
+  Formation
+          Formation                                  de visualisation cartographique exploitant
+                                                     les APIs RATP pour analyser la fiabilité du
+Licence Big Data                                     réseau métropolitain, avec classification des
+2025 - 2026                                          lignes/stations par performance et
+Insta Paris, 75005                                   monitoring de l'état global du réseau de
+                                                     transport.
+BTS SIO option SLAM
+2023-2025                                         Assistant Marketing Digital & SEO -
+Insta Paris, 75005                                Innovqube
+                                                  Contexte : Stage de 2 mois chez InnovQube,
+ Compétences                                      start-up SaaS, axé sur le marketing digital et
+                                                  l'optimisation SEO.
+Développement Web : HTML, CSS, PHP, JavaScript    Missions : Recherche de mots-clés via Semrush,
+SGBD : PostgreSQL, MYSQL                          rédaction de contenus SEO optimisés, analyse
+Framework : Bootstrap                             des performances de référencement et veille
+Développement applicatif : Python, C#             concurrentielle pour adapter la stratégie digitale
+Environnement : Visual Studio                     aux tendances du secteur.
+Graphisme : Canva                                 Développeur Web Full-Stack - INSTA
+Réseaux : TCP/IP, Apache, Sécurité informatique   Contexte : Projet autonome de développement
+Virtualisation : Vmware, VirtualBox               web full-stack dans le cadre d'un stage de 3
+IA : Chatgpt, Dall-e, Prompt Engineering, LLM     mois, création complète d'un site e-commerce
+DevOps : Docker, Linux                            nommé Ecom.
+                                                  Missions : Conception et développement
+ Langues                                          complet d'une plateforme e-commerce avec
+                                                  HTML5, CSS3, JavaScript, PHP et MySQL,
+Français: Bilingue                                intégration de frameworks (Bootstrap, jQuery,
+Anglais: Niveau avancé                            PHPMailer) pour optimiser l'UX et automatiser
+Arabe : Niveau courant                            la gestion des emails.
+

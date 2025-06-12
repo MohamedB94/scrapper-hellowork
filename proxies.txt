@@ -1,0 +1,12 @@
+# Liste des proxies au format ip:port
+# A remplacer par vos propres proxies
+# Exemple:
+# 192.168.1.1:8080
+# 10.0.0.1:3128
+
+# Pour obtenir des proxies, vous pouvez utiliser des services comme:
+# - https://www.proxyscrape.com/
+# - https://www.proxy-list.download/
+# - https://free-proxy-list.net/
+
+# Assurez-vous de tester vos proxies avant de les utiliser dans le script

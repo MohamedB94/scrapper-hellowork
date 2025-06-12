@@ -1,0 +1,7 @@
+Actuellement en formation BTS SIO option SLAM, je me spécialise dans le développement d'applications avec une forte orientation vers la data. Passionné par les technologies de données, j'ai déjà acquis une solide expérience pratique à travers plusieurs projets personnels structurants.
+
+J'ai développé de façon autonome un pipeline météorologique complet qui m'a permis de maîtriser l'ensemble de la chaîne de traitement de données : de la collecte via API à la visualisation avec Streamlit, en passant par le stockage dans MySQL et le déploiement avec Docker. Cette solution automatisée m'a permis d'approfondir mes compétences en Python, en containerisation et en gestion de bases de données.
+
+Mon projet de dashboard RATP démontre ma capacité à transformer des données brutes en informations actionnables. J'ai créé une plateforme d'analyse qui évalue la fiabilité du réseau métropolitain en temps réel, classifie les lignes par performance et monitore l'état global du réseau de transport.
+
+Ces projets, que je mène en parallèle de ma formation, reflètent mon autonomie, ma rigueur et ma capacité à apprendre rapidement de nouvelles technologies. Je cherche aujourd'hui une opportunité d'alternance pour mettre en pratique ces compétences dans un environnement professionnel stimulant, tout en poursuivant ma formation en Licence Big Data.
