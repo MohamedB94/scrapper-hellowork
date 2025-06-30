@@ -9,6 +9,7 @@ Ce script permet de scraper les offres d'emploi du site HelloWork et de génére
 - Enregistrement des offres dans Google Sheets
 - Génération automatique de lettres de motivation personnalisées
 - Possibilité de configurer la recherche (poste, localisation, nombre de pages)
+- Interface interactive facile à utiliser
 
 ## Prérequis
 
@@ -31,47 +32,116 @@ pip install -r requirements.txt
    b. Créez un nouveau projet ou sélectionnez un projet existant
    c. Activez l'API Google Drive et l'API Google Sheets
    d. Créez un compte de service et téléchargez le fichier de clé JSON
-   e. Renommez le fichier téléchargé en `credentials.json` et placez-le à la racine du projet
+   e. Option 1 (recommandée) - Fichier .env (pour plus de sécurité) :
+
+   - Copiez le fichier `.env.template` en `.env`
+   - Ouvrez le fichier `.env` et collez tout le contenu du JSON téléchargé dans la variable `GOOGLE_CREDENTIALS_JSON`
+     f. Option 2 - Fichier credentials.json :
+   - Renommez le fichier téléchargé en `credentials.json` et placez-le à la racine du projet
 
 4. Créez les fichiers nécessaires pour la génération des lettres de motivation :
    a. `cv.txt` : Votre CV au format texte
    b. `parcours.txt` : Votre parcours professionnel et motivations
+   c. `infos_perso.json` : Vos informations personnelles (nom, coordonnées, texte de motivation, signature)
 
-## Utilisation
+## Utilisation simplifiée (Recommandée)
 
-### Recherche d'offres d'emploi
+### Avec les scripts de lancement
+
+Nous avons créé des scripts qui simplifient l'utilisation du scraper :
+
+#### Windows
+
+Double-cliquez simplement sur `lancer_scraper.bat` et suivez les instructions.
+
+#### En ligne de commande (toutes plateformes)
 
 ```bash
-python hellowork_scraper_v2.py --job "data engineer" --location "paris" --pages 2
+python lancer_scraper.py
+```
+
+#### Linux/macOS
+
+```bash
+chmod +x lancer_scraper.sh
+./lancer_scraper.sh
+```
+
+Le lanceur offre un menu intuitif avec les options suivantes :
+
+1. Lancer le scraper en mode interactif
+2. Vérifier l'environnement et les dépendances
+3. Afficher l'aide
+4. Quitter
+
+## Utilisation en ligne de commande
+
+Si vous préférez utiliser directement les options en ligne de commande :
+
+### Mode interactif (Recommandé)
+
+```bash
+python hellowork_scraper_interactive.py --interactive
+```
+
+### Recherche d'offres d'emploi avec options spécifiques
+
+```bash
+python hellowork_scraper_interactive.py --job "data engineer" --location "paris" --pages 2
 ```
 
 ### Recherche d'offres avec génération de lettres de motivation
 
 ```bash
-python hellowork_scraper_v2.py --job "data engineer" --location "paris" --pages 2 --generate-letters
+python hellowork_scraper_interactive.py --job "data engineer" --location "paris" --pages 2 --generate-letters
 ```
 
 ### Recherche sans sauvegarde dans Google Sheets
 
 ```bash
-python hellowork_scraper_v2.py --job "data engineer" --location "paris" --pages 1 --skip-sheets
+python hellowork_scraper_interactive.py --job "data engineer" --location "paris" --pages 1 --skip-sheets
 ```
 
 ### Options disponibles
 
-- `--job` : Titre du poste à rechercher (obligatoire)
+- `--interactive` : Lancer en mode interactif avec interface guidée
+- `--job` : Titre du poste à rechercher
 - `--location` : Localisation de la recherche (optionnel)
+- `--contrat` : Type de contrat (alternance, cdi, cdd, stage, etc.)
 - `--pages` : Nombre de pages à scraper (par défaut: 1)
 - `--generate-letters` : Générer des lettres de motivation (optionnel)
-- `--skip-sheets` : Ne pas enregistrer dans Google Sheets (optionnel)
+- `--sheet-name` : Nom de la feuille Google Sheets (par défaut: "Offres HelloWork")
 
 ## Structure des fichiers
 
-- `hellowork_scraper_v2.py` : Script principal optimisé
+- `hellowork_scraper_interactive.py` : Script principal avec interface interactive
+- `lancer_scraper.py` : Script Python de lancement avec menu
+- `lancer_scraper.bat` : Script de lancement Windows
+- `lancer_scraper.sh` : Script de lancement Linux/macOS
 - `cv.txt` : Fichier contenant votre CV
 - `parcours.txt` : Fichier contenant votre parcours professionnel
-- `credentials.json` : Identifiants Google API pour Google Sheets
+- `infos_perso.json` : Vos informations personnelles pour la personnalisation des lettres
+- `.env` : Fichier contenant vos credentials Google (recommandé, non versionné)
+- `credentials.json` : Alternative pour les identifiants Google API (non versionné)
+- `.gitignore` : Liste des fichiers à exclure du contrôle de version (contient .env et credentials.json)
+- `.env.template` : Modèle pour créer votre propre fichier .env
+- `proxies.txt` : Liste de proxies (optionnel)
 - `lettres/` : Dossier contenant les lettres de motivation générées
+
+## Personnalisation des lettres de motivation
+
+Le script utilise les informations contenues dans le fichier `infos_perso.json` pour personnaliser les lettres de motivation. Ce fichier doit contenir les champs suivants :
+
+```json
+{
+  "nom": "Votre Nom",
+  "coordonnees": "email@example.com | 06 XX XX XX XX | Ville, Pays",
+  "texte_motivation": "Votre texte de motivation personnalisé...",
+  "signature": "Cordialement,\nVotre Nom"
+}
+```
+
+Le texte de motivation sera automatiquement adapté à chaque entreprise en remplaçant "EDF" par le nom de l'entreprise cible.
 
 ## Résultat
 
@@ -93,6 +163,7 @@ Les lettres de motivation générées seront enregistrées au format texte dans 
 ## Remarques
 
 - Pour éviter d'être bloqué par le site, le script inclut un délai entre chaque requête.
+- Vous pouvez utiliser des proxies en les ajoutant au fichier `proxies.txt` (un proxy par ligne).
 - Si la feuille Google Sheets n'existe pas, elle sera automatiquement créée.
 - Pour des raisons légales, veuillez utiliser ce script uniquement à des fins personnelles et respectez les conditions d'utilisation du site HelloWork.
 
@@ -108,3 +179,4 @@ Les lettres de motivation générées seront enregistrées au format texte dans 
 - Si vous ne trouvez pas de résultats, il est possible que :
   - La structure du site HelloWork ait changé (les sélecteurs CSS pourraient devoir être mis à jour)
   - Votre adresse IP soit temporairement bloquée pour cause de trop nombreuses requêtes
+  - Utilisez l'option des proxies pour contourner les limitations d'accès

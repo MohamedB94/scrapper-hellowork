@@ -1,0 +1,24 @@
+# Git ignore file for HelloWork scraper project
+
+# Ignorer les fichiers d'environnement contenant des informations sensibles
+.env
+credentials.json
+
+# Ignorer les dossiers générés et les caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+.coverage.*
+.cache/
+
+# Ignorer les fichiers générés
+lettres/
+saves/
+debug/
+*.log
+
+# Ignorer les fichiers temporaires système
+.DS_Store
+Thumbs.db

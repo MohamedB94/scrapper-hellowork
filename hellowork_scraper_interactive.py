@@ -23,6 +23,10 @@ import pandas as pd
 import textwrap
 import colorama
 from colorama import Fore, Back, Style
+from dotenv import load_dotenv
+
+# Charger les variables d'environnement depuis .env
+load_dotenv()
 
 # Initialiser colorama pour les couleurs dans le terminal
 colorama.init()
@@ -703,20 +707,27 @@ def save_to_google_sheets(job_listings, letters_paths=None, sheet_name="Offres H
         bool: True si la sauvegarde a réussi, False sinon
     """
     try:
-        # Vérifier si le fichier credentials.json existe
-        if not os.path.exists('credentials.json'):
-            print_error("Fichier credentials.json non trouvé. Impossible de sauvegarder dans Google Sheets.")
-            print_info("Créez un projet Google Cloud Platform et téléchargez les credentials au format JSON.")
-            return False
-        
         print_info("Connexion à Google Sheets...")
         
         # Définir l'étendue (scope) d'accès à l'API
         scope = ['https://spreadsheets.google.com/feeds',
                 'https://www.googleapis.com/auth/drive']
         
-        # Authentification avec le fichier de credentials
-        credentials = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
+        # Vérifier si le fichier credentials.json existe
+        if os.path.exists('credentials.json'):
+            # Utiliser le fichier credentials.json s'il existe
+            credentials = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
+        else:
+            # Sinon, utiliser les credentials depuis les variables d'environnement
+            credentials_json = os.getenv('GOOGLE_CREDENTIALS_JSON')
+            if not credentials_json:
+                print_error("Aucun credentials trouvé (ni dans .env, ni dans credentials.json).")
+                print_info("Créez un projet Google Cloud Platform et configurez les credentials.")
+                return False
+            
+            # Convertir la chaîne JSON en dictionnaire
+            credentials_dict = json.loads(credentials_json)
+            credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_dict, scope)
         
         # Créer une instance du client gspread
         client = gspread.authorize(credentials)
@@ -1240,3 +1251,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# ajout d'une fonction qui prends les qualites recherches et qui mets dans le cv en blanc sur un fond blanc et il donne a nom au cv modifé pour que ca soit plus simple de ce retoruver
+#colonne en plus dans le google sheet pour renommer les cv et juste a copié le cv et l'envoyer

@@ -42,7 +42,7 @@ def verifier_dependances():
     """Vérifie que toutes les dépendances requises sont installées"""
     required_packages = [
         "requests", "beautifulsoup4", "gspread", "google-auth", 
-        "oauth2client", "pandas", "tqdm", "argparse", "colorama"
+        "oauth2client", "pandas", "tqdm", "argparse", "colorama", "python-dotenv"
     ]
     
     missing_packages = []
@@ -72,13 +72,27 @@ def verifier_fichiers_essentiels():
         "hellowork_scraper_interactive.py",
         "cv.txt",
         "parcours.txt",
-        "infos_perso.json",
-        "credentials.json"
+        "infos_perso.json"
     ]
+    
+    # Au moins un des fichiers d'authentification Google doit être présent
+    fichiers_auth = ["credentials.json", ".env"]
+    auth_present = False
+    
+    for fichier in fichiers_auth:
+        if os.path.exists(fichier):
+            auth_present = True
+            break
+    
+    if not auth_present:
+        fichiers_essentiels.append("credentials.json ou .env")
     
     fichiers_manquants = []
     for fichier in fichiers_essentiels:
-        if not os.path.exists(fichier):
+        if "ou" in fichier:
+            # Cas spécial pour les alternatives
+            continue
+        elif not os.path.exists(fichier):
             fichiers_manquants.append(fichier)
     
     return fichiers_manquants
@@ -126,7 +140,7 @@ def afficher_aide():
     print("- cv.txt : Votre CV au format texte")
     print("- parcours.txt : Description de votre parcours professionnel")
     print("- infos_perso.json : Vos informations personnelles pour les lettres de motivation")
-    print("- credentials.json : Vos identifiants Google API (pour l'accès à Google Sheets)")
+    print("- .env ou credentials.json : Vos identifiants Google API (pour l'accès à Google Sheets)")
     input("\nAppuyez sur Entrée pour revenir au menu principal...")
 
 def main():
